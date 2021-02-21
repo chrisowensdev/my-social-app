@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../redux/actions/userActions';
+import { addUser } from '../../redux/actions/userActions';
 import styled from 'styled-components';
 
-const Form = styled.form`
+const Form = styled.div`
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -46,6 +46,7 @@ const Form = styled.form`
 `;
 
 const Error = styled.p`
+    text-align: center;
     color: red;
     margin: 20px auto 0;
 `;
@@ -84,29 +85,31 @@ const AddUser = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form>
             <h1>Add User</h1>
-            <input
-                type='text'
-                placeholder='Enter First Name'
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-            />
-            <input
-                type='text'
-                placeholder='Enter Last Name'
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-            />
-            <input
-                type='email'
-                placeholder='Enter Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
+            <form onSubmit={handleSubmit}>
+                <input
+                    type='text'
+                    placeholder='Enter First Name'
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                    type='text'
+                    placeholder='Enter Last Name'
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                />
+                <input
+                    type='email'
+                    placeholder='Enter Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
 
-            <button type='submit'>Add User</button>
-            <Error>{errorMessage ? errorMessage : ''}</Error>
+                <button type='submit'>Add User</button>
+                <Error>{errorMessage ? errorMessage : ''}</Error>
+            </form>
         </Form>
     );
 };

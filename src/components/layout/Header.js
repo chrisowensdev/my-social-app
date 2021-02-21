@@ -28,10 +28,6 @@ const ListItem = styled.li`
     transition: all 0.3s ease;
     margin: 20px;
 
-    .navbar-link:first-child {
-        padding: 20px;
-    }
-
     :hover {
         background-color: #fff;
         color: #379683;
@@ -58,8 +54,13 @@ const Header = () => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link className='navbar-link' to='/contact'>
-                        Contact
+                    <Link className='navbar-link' to='/addpost'>
+                        Add Post
+                    </Link>
+                </ListItem>
+                <ListItem>
+                    <Link className='navbar-link' to='/signup'>
+                        Sign Up
                     </Link>
                 </ListItem>
             </Menu>

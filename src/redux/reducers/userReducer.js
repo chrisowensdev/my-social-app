@@ -1,4 +1,5 @@
 import { v1 as uuidv1 } from 'uuid';
+
 import {
     ADD_USER,
     DELETE_USER,
@@ -6,7 +7,7 @@ import {
     SET_ACTIVE_USER,
 } from '../actionTypes';
 
-const initalState = {
+const initialState = {
     activeUser: {
         id: 1,
         firstName: 'Chris',
@@ -25,12 +26,20 @@ const initalState = {
     ],
 };
 
-const userReducer = (state = initalState, action) => {
+const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_USER:
             return {
                 ...state,
-                users: [...state.users, action.payload],
+                userList: [
+                    ...state.userList,
+                    {
+                        id: uuidv1(),
+                        firstName: action.payload.firstName,
+                        lastName: action.payload.lastName,
+                        email: action.payload.email,
+                    },
+                ],
             };
 
         case UPDATE_USER:
