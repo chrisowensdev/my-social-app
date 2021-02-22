@@ -1,6 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import SinglePost from './SinglePost';
+
 const ShowPostList = () => {
     const posts = useSelector((state) => state.posts.postList);
     return (
@@ -8,7 +10,7 @@ const ShowPostList = () => {
             <h1>Show Post List</h1>
             <ul>
                 {posts.map((post) => (
-                    <li key={post.id}>{post.content}</li>
+                    <SinglePost key={post.id} post={post} />
                 ))}
             </ul>
         </>

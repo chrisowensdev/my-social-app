@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../../redux/actions/userActions';
 import styled from 'styled-components';
 
-const AddUser = () => {
+const Login = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -27,7 +26,7 @@ const AddUser = () => {
         } else if (!email) {
             setErrorMessage('Please enter email');
         } else {
-            dispatch(addUser(user));
+            // dispatch(addUser(user));
 
             setFirstName('');
             setLastName('');
@@ -35,7 +34,6 @@ const AddUser = () => {
             setErrorMessage('');
         }
     };
-
     return (
         <Form>
             <h1>Add User</h1>
@@ -46,17 +44,18 @@ const AddUser = () => {
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                 />
-                <input
-                    type='text'
-                    placeholder='Enter Last Name'
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
+
                 <input
                     type='email'
                     placeholder='Enter Email'
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    type='text'
+                    placeholder='Enter Last Name'
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
                 />
 
                 <button type='submit'>Add User</button>
@@ -66,7 +65,7 @@ const AddUser = () => {
     );
 };
 
-export default AddUser;
+export default Login;
 
 const Form = styled.div`
     display: flex;

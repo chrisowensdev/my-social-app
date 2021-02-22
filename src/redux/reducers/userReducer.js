@@ -1,11 +1,6 @@
 import { v1 as uuidv1 } from 'uuid';
 
-import {
-    ADD_USER,
-    DELETE_USER,
-    UPDATE_USER,
-    SET_ACTIVE_USER,
-} from '../actionTypes';
+import { ADD_USER, DELETE_USER, UPDATE_USER, LOGIN_USER } from '../actionTypes';
 
 const initialState = {
     activeUser: {
@@ -22,6 +17,24 @@ const initialState = {
             lastName: 'Owens',
             email: 'chrisowensdev@gmail.com',
             password: '123',
+            imageUrl:
+                'https://chrisowensdev.com/images/profile_pic_400x533.jpg',
+        },
+        {
+            id: 2,
+            firstName: 'Jane',
+            lastName: 'Doe',
+            email: 'janedoe@gmail.com',
+            password: '123',
+            imageUrl: 'https://randomuser.me/api/portraits/women/75.jpg',
+        },
+        {
+            id: 3,
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'jdoe@gmail.com',
+            password: '123',
+            imageUrl: 'https://randomuser.me/api/portraits/men/75.jpg',
         },
     ],
 };
@@ -48,7 +61,7 @@ const userReducer = (state = initialState, action) => {
         case DELETE_USER:
             return state;
 
-        case SET_ACTIVE_USER:
+        case LOGIN_USER:
             return {
                 ...state,
                 activeUser: action.payload,

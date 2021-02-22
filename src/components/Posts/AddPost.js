@@ -4,19 +4,48 @@ import styled from 'styled-components';
 import { v1 as uuidv1 } from 'uuid';
 import { addPost } from '../../redux/actions/postActions';
 
-const TextArea = styled.textarea`
-    height: 100px;
-    width: 494px;
-    resize: none;
-    border-bottom: none;
+const AddPost = () => {
+    const [body, setBody] = useState('');
 
-    :focus {
-        outline: none;
-    }
-`;
+    const activeUser = useSelector((state) => state.users.activeUser);
+    const dispatch = useDispatch();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let post = {
+            id: uuidv1(),
+            authorId: activeUser.id,
+            content: body,
+            date: Date.now(),
+        };
+
+        if (body) {
+            dispatch(addPost(post));
+            setBody('');
+        }
+    };
+    return (
+        <>
+            <PostArea>
+                <form onSubmit={handleSubmit}>
+                    <TextArea
+                        value={body}
+                        onChange={(e) => setBody(e.target.value)}
+                    ></TextArea>
+                    <button>Submit</button>
+                </form>
+            </PostArea>
+        </>
+    );
+};
+
+export default AddPost;
+
+/************STYLES*************/
 
 const PostArea = styled.div`
-    margin: 0 auto;
+    margin: 50px auto;
     width: 500px;
     form {
         display: flex;
@@ -44,45 +73,13 @@ const PostArea = styled.div`
     }
 `;
 
-const AddPost = () => {
-    const [body, setBody] = useState('');
+const TextArea = styled.textarea`
+    height: 100px;
+    width: 494px;
+    resize: none;
+    border-bottom: none;
 
-    const activeUser = useSelector((state) => state.users.activeUser);
-    const dispatch = useDispatch();
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        let post = {
-            id: uuidv1(),
-            authorId: activeUser.id,
-            content: body,
-            date: Date.now(),
-        };
-
-        dispatch(addPost(post));
-
-        console.log(post);
-        setBody('');
-    };
-    return (
-        <>
-            <PostArea>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        Active User:
-                        {activeUser.id}
-                        {activeUser.firstName}
-                    </div>
-                    <TextArea
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                    ></TextArea>
-                    <button>Submit</button>
-                </form>
-            </PostArea>
-        </>
-    );
-};
-
-export default AddPost;
+    :focus {
+        outline: none;
+    }
+`;

@@ -1,9 +1,4 @@
-import {
-    ADD_USER,
-    DELETE_USER,
-    SET_ACTIVE_USER,
-    UPDATE_USER,
-} from '../actionTypes';
+import { ADD_USER, DELETE_USER, LOGIN_USER, UPDATE_USER } from '../actionTypes';
 
 export const addUser = (user) => ({
     type: ADD_USER,
@@ -19,6 +14,7 @@ export const deleteUser = (id) => ({
     payload: id,
 });
 
-export const setActiveUser = (user) => ({
-    type: SET_ACTIVE_USER,
+export const loginUser = (data) => ({
+    type: LOGIN_USER,
+    payload: data,
 });
