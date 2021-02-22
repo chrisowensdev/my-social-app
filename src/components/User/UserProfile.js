@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { Paper } from '../Styles';
+import Login from './Login';
 
 import styled from 'styled-components';
 
@@ -59,6 +59,7 @@ const UserProfile = () => {
             ) : (
                 <form></form>
             )}
+            <Login />
         </>
     );
 };

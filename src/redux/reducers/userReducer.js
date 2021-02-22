@@ -3,13 +3,7 @@ import { v1 as uuidv1 } from 'uuid';
 import { ADD_USER, DELETE_USER, UPDATE_USER, LOGIN_USER } from '../actionTypes';
 
 const initialState = {
-    activeUser: {
-        id: 1,
-        firstName: 'Chris',
-        lastName: 'Owens',
-        email: 'chrisowensdev@gmail.com',
-        password: '123',
-    },
+    activeUser: {},
     userList: [
         {
             id: 1,
@@ -32,7 +26,7 @@ const initialState = {
             id: 3,
             firstName: 'John',
             lastName: 'Doe',
-            email: 'jdoe@gmail.com',
+            email: 'johndoe@gmail.com',
             password: '123',
             imageUrl: 'https://randomuser.me/api/portraits/men/75.jpg',
         },

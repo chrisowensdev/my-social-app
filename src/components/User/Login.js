@@ -1,50 +1,46 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { loginUser } from '../../redux/actions/userActions';
 
 const Login = () => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
+    const users = useSelector((state) => state.users.userList);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let user = {
-            firstName: firstName,
-            lastName: lastName,
+        let loginInfo = {
             email: email,
+            password: password,
         };
 
-        if (!firstName) {
-            setErrorMessage('Please enter first name');
-        } else if (!lastName) {
-            setErrorMessage('Please enter last name');
-        } else if (!email) {
+        if (!email) {
             setErrorMessage('Please enter email');
+        } else if (!password) {
+            setErrorMessage('Please enter password');
         } else {
-            // dispatch(addUser(user));
+            const user = users.filter(
+                (user) => user.email === email && user.password === password
+            )[0];
 
-            setFirstName('');
-            setLastName('');
-            setEmail('');
-            setErrorMessage('');
+            if (user) {
+                dispatch(loginUser(user));
+
+                setEmail('');
+                setPassword('');
+                setErrorMessage('');
+            }
         }
     };
     return (
         <Form>
-            <h1>Add User</h1>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    placeholder='Enter First Name'
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-
                 <input
                     type='email'
                     placeholder='Enter Email'
@@ -52,10 +48,10 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    type='text'
-                    placeholder='Enter Last Name'
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    type='password'
+                    placeholder='Enter Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
 
                 <button type='submit'>Add User</button>
