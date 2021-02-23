@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import AddComment from './AddComment';
+import { getYear } from '../../data/functions';
 
 import StarPost from './StarPost';
 
@@ -15,20 +17,28 @@ const SinglePost = ({ post }) => {
             <div className='author-info'>
                 <img src={author.imageUrl} alt={author.firstName} />
                 <h4>
-                    <Link to={`/users/${author.id}`}>
+                    <Link to={`/users/${author.id}`} className='user-link'>
                         {author.firstName} {author.lastName}
+                        <h6>{author.email}</h6>
                     </Link>
                 </h4>
             </div>
 
-            <h6>{author.email}</h6>
             <p className='content'>{post.content}</p>
 
-            <p className='date'>{post.date}</p>
-            <StarPost />
+            <p className='date'>{getYear(post.date)}</p>
+            <PostButtons>
+                <StarPost />
+                <AddComment />
+            </PostButtons>
         </ListItem>
     );
 };
+
+const PostButtons = styled.div`
+    position: relative;
+    text-align: right;
+`;
 
 const ListItem = styled.li`
     border: 1px solid #379683;
@@ -57,21 +67,24 @@ const ListItem = styled.li`
 
     h6 {
         padding: 0;
-        margin: 0;
-        position: absolute;
-        top: 10px;
-        right: 10px;
+        margin: 5px 0;
     }
 
     .content {
         line-break: anywhere;
+        margin: 5px;
+    }
+
+    .user-link {
+        text-decoration: none;
+        color: #379683;
     }
 
     .date {
         font-size: 12px;
         position: absolute;
         margin: 0;
-        bottom: 10px;
+        top: 10px;
         right: 10px;
     }
 `;

@@ -18,6 +18,7 @@ const LikeButton = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+    color: #379683;
 
     :focus {
         outline: none;

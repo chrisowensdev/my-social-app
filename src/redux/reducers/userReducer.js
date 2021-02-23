@@ -3,7 +3,14 @@ import { v1 as uuidv1 } from 'uuid';
 import { ADD_USER, DELETE_USER, UPDATE_USER, LOGIN_USER } from '../actionTypes';
 
 const initialState = {
-    activeUser: {},
+    activeUser: {
+        id: 1,
+        firstName: 'Chris',
+        lastName: 'Owens',
+        email: 'chrisowensdev@gmail.com',
+        password: '123',
+        imageUrl: 'https://chrisowensdev.com/images/profile_pic_400x533.jpg',
+    },
     userList: [
         {
             id: 1,
