@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+import { addComment } from '../../redux/actions/postActions';
 
 import AddCommentIcon from '@material-ui/icons/AddComment';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-const AddComment = () => {
+const AddComment = ({ post }) => {
     const [commentToggle, setCommentToggle] = useState(false);
+    const [commentText, setCommentText] = useState('');
+
+    const activeUser = useSelector((state) => state.users.activeUser);
+
+    const dispatch = useDispatch();
+
+    const handleAddComment = (e) => {
+        e.preventDefault();
+        let comment = {
+            userId: activeUser.id,
+            commentText: commentText,
+            date: Date.now(),
+        };
+
+        dispatch(addComment(post, comment));
+
+        setCommentToggle(false);
+        setCommentText('');
+    };
     return (
         <>
             {commentToggle ? (
@@ -15,8 +37,16 @@ const AddComment = () => {
                         <AddCommentIcon />
                     </CommentButton>
                     <AddCommentForm>
-                        <form>
-                            <textarea type='text' placeholder='Add Comment' />
+                        <form onSubmit={(e) => handleAddComment(e)}>
+                            <textarea
+                                type='text'
+                                placeholder='Add Comment'
+                                value={commentText}
+                                onChange={(e) => setCommentText(e.target.value)}
+                            />
+                            <button type='submit'>
+                                <AddCircleIcon />
+                            </button>
                         </form>
                     </AddCommentForm>
                 </>
@@ -57,15 +87,33 @@ const AddCommentForm = styled.div`
 
     form {
         width: 100%;
+        display: flex;
+        margin-top: 15px;
+
+        button {
+            background-color: transparent;
+            border: none;
+            color: #379683;
+            cursor: pointer;
+
+            :focus {
+                outline: none;
+            }
+
+            :hover {
+                color: grey;
+            }
+        }
     }
 
     textarea {
         resize: none;
         margin: 0 auto;
         width: 95%;
+        height: 20px;
         border-radius: 5px;
         border: 1px solid grey;
-        padding: 5px 5px;
+        padding: 5px;
         font-family: inherit;
 
         :focus {
