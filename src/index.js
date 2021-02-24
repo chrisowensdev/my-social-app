@@ -9,6 +9,7 @@ import UserProfile from './components/User/UserProfile';
 import AddUser from './components/User/AddUser';
 import Posts from './components/Posts/Posts';
 import ViewUser from './components/User/ViewUser';
+import Login from './components/User/Login';
 
 //redux
 import { Provider } from 'react-redux';
@@ -22,6 +23,7 @@ ReactDOM.render(
                     <Route exact path='/' component={App} />
                     <Route path='/profile' component={UserProfile} />
                     <Route path='/signup' component={AddUser} />
+                    <Route path='/login' component={Login} />
                     <Route path='/addpost' component={Posts} />
                     <Route path='/users/:id' component={ViewUser} />
                 </BaseLayout>

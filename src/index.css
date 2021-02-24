@@ -16,6 +16,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
+
 }
 
 code {
@@ -26,4 +27,11 @@ code {
 .navbar-link {
   color: #fff;
   text-decoration: none;
+}
+
+@media(prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(26, 22, 22);
+    color: #fff;
+  }
 }

@@ -13,7 +13,10 @@ const initialState = {
             authorId: 1,
             content: 'this is a test post content',
             date: '02/19/21',
-            comments: [],
+            comments: [
+                { userId: 1, commentText: 'Comment 1', date: Date.now() },
+            ],
+            likes: [],
         },
         {
             id: 2,
@@ -21,6 +24,7 @@ const initialState = {
             content: 'this is a test post content',
             date: '02/19/21',
             comments: [],
+            likes: [],
         },
         {
             id: 3,
@@ -28,6 +32,7 @@ const initialState = {
             content: 'this is a test post content',
             date: '02/19/21',
             comments: [],
+            likes: [],
         },
         {
             id: 4,
@@ -35,6 +40,7 @@ const initialState = {
             content: 'this is a test post content',
             date: '02/19/21',
             comments: [],
+            likes: [],
         },
     ],
 };

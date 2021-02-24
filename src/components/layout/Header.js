@@ -5,7 +5,11 @@ import styled from 'styled-components';
 const Header = () => {
     return (
         <Nav>
-            <Title>My Social App</Title>
+            <Title>
+                <Link className='navbar-link' to='/'>
+                    My Social App
+                </Link>
+            </Title>
             <Menu>
                 <ListItem>
                     <Link className='navbar-link' to='/profile'>
@@ -13,8 +17,8 @@ const Header = () => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    <Link className='navbar-link' to='/about'>
-                        About
+                    <Link className='navbar-link' to='/login'>
+                        Login
                     </Link>
                 </ListItem>
                 <ListItem>

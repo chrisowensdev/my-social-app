@@ -1,10 +1,36 @@
 import React, { useState } from 'react';
-
 import { useSelector } from 'react-redux';
 
-import Login from './Login';
-
 import styled from 'styled-components';
+
+const UserProfile = () => {
+    const [edit, setEdit] = useState(false);
+    const user = useSelector((state) => state.users.activeUser);
+
+    return (
+        <>
+            {!edit ? (
+                <>
+                    <h1>User Profile</h1>
+                    <Section>
+                        <button className='edit-button'>Edit</button>
+                        <img src={user.imageUrl} alt={user.firstName} />
+                        <div>
+                            <p>
+                                {user.firstName} {user.lastName}
+                            </p>
+                            <p>{user.email}</p>
+                        </div>
+                    </Section>
+                </>
+            ) : (
+                <form></form>
+            )}
+        </>
+    );
+};
+
+export default UserProfile;
 
 const Section = styled.div`
     padding: 50px;
@@ -35,33 +61,11 @@ const Section = styled.div`
     .edit-button:active {
         transform: scale(0.97);
     }
+
+    img {
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 `;
-
-const UserProfile = () => {
-    const [edit, setEdit] = useState(false);
-    const user = useSelector((state) => state.users.activeUser);
-
-    return (
-        <>
-            {!edit ? (
-                <>
-                    <h1>User Profile</h1>
-                    <Section>
-                        <button className='edit-button'>Edit</button>
-                        <div>
-                            <p>
-                                {user.firstName} {user.lastName}
-                            </p>
-                            <p>{user.email}</p>
-                        </div>
-                    </Section>
-                </>
-            ) : (
-                <form></form>
-            )}
-            <Login />
-        </>
-    );
-};
-
-export default UserProfile;

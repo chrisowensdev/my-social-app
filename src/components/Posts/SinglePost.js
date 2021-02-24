@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import AddComment from './AddComment';
+
 import { getYear } from '../../data/functions';
 
 import StarPost from './StarPost';
+import AddComment from './AddComment';
+import ViewComments from './ViewComments';
 
 const SinglePost = ({ post }) => {
     const users = useSelector((state) => state.users.userList);
@@ -27,6 +29,7 @@ const SinglePost = ({ post }) => {
             <p className='content'>{post.content}</p>
 
             <p className='date'>{getYear(post.date)}</p>
+            <ViewComments post={post} />
             <PostButtons>
                 <StarPost />
                 <AddComment post={post} />

@@ -18,6 +18,7 @@ const AddPost = () => {
             authorId: activeUser.id,
             content: body,
             date: Date.now(),
+            comments: [],
         };
 
         if (body) {
@@ -29,10 +30,10 @@ const AddPost = () => {
         <>
             <PostArea>
                 <form onSubmit={handleSubmit}>
-                    <TextArea
+                    <textarea
                         value={body}
                         onChange={(e) => setBody(e.target.value)}
-                    ></TextArea>
+                    ></textarea>
                     <button>Submit</button>
                 </form>
             </PostArea>
@@ -46,13 +47,32 @@ export default AddPost;
 
 const PostArea = styled.div`
     margin: 50px auto;
-    width: 500px;
+    width: 430px;
     form {
         display: flex;
         flex-direction: column;
 
+        textarea {
+            height: 100px;
+            width: 424px;
+            resize: none;
+            border-bottom: none;
+            font-family: inherit;
+
+            :focus {
+                outline: none;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            textarea {
+                background-color: rgb(26, 22, 22);
+                color: #fff;
+            }
+        }
+
         button {
-            width: 500px;
+            width: 430px;
             background-color: #379683;
             color: #fff;
             border: none;
@@ -70,17 +90,5 @@ const PostArea = styled.div`
             transform: scaleY(0.95);
             outline: none;
         }
-    }
-`;
-
-const TextArea = styled.textarea`
-    height: 100px;
-    width: 494px;
-    resize: none;
-    border-bottom: none;
-    font-family: inherit;
-
-    :focus {
-        outline: none;
     }
 `;
