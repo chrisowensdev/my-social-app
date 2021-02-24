@@ -31,7 +31,7 @@ const SinglePost = ({ post }) => {
             <p className='date'>{getYear(post.date)}</p>
             <ViewComments post={post} />
             <PostButtons>
-                <StarPost />
+                <StarPost post={post} />
                 <AddComment post={post} />
             </PostButtons>
         </ListItem>

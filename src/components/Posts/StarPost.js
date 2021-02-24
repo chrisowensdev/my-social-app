@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 import styled from 'styled-components';
 
-const StarPost = () => {
+const StarPost = ({ post }) => {
     const [favorite, setFavorite] = useState(false);
+
+    const activeUser = useSelector((state) => state.users.activeUser);
+
+    useEffect(() => {
+        const getPostLike = () => {
+            let postLiked = post.likes.filter(
+                (like) => like === activeUser.id
+            )[0];
+            setFavorite(postLiked);
+        };
+        getPostLike();
+    }, [activeUser, post]);
     return (
         <LikeButton onClick={() => setFavorite(!favorite)}>
             {favorite ? <StarIcon className='color' /> : <StarBorderIcon />}

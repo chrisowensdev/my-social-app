@@ -24,7 +24,7 @@ const initialState = {
             content: 'this is a test post content',
             date: '02/19/21',
             comments: [],
-            likes: [],
+            likes: [1],
         },
         {
             id: 3,
