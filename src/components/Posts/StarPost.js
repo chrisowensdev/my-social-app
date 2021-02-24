@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import StarIcon from '@material-ui/icons/Star';
 import styled from 'styled-components';
+import { toggleLike } from '../../redux/actions/postActions';
 
 const StarPost = ({ post }) => {
     const [favorite, setFavorite] = useState(false);
 
     const activeUser = useSelector((state) => state.users.activeUser);
+
+    const dispatch = useDispatch();
+
+    const handleLike = () => {
+        dispatch(toggleLike(post.id, activeUser.id));
+    };
 
     useEffect(() => {
         const getPostLike = () => {
@@ -19,7 +26,7 @@ const StarPost = ({ post }) => {
         getPostLike();
     }, [activeUser, post]);
     return (
-        <LikeButton onClick={() => setFavorite(!favorite)}>
+        <LikeButton onClick={handleLike}>
             {favorite ? <StarIcon className='color' /> : <StarBorderIcon />}
         </LikeButton>
     );

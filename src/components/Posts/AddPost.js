@@ -19,6 +19,7 @@ const AddPost = () => {
             content: body,
             date: Date.now(),
             comments: [],
+            likes: [],
         };
 
         if (body) {

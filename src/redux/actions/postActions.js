@@ -2,6 +2,7 @@ import {
     ADD_COMMENT,
     ADD_POST,
     DELETE_POST,
+    TOGGLE_LIKE,
     UPDATE_POST,
 } from '../actionTypes';
 
@@ -19,10 +20,18 @@ export const deleteUser = (id) => ({
     payload: id,
 });
 
-export const addComment = (post, comment) => ({
+export const addComment = (postId, comment) => ({
     type: ADD_COMMENT,
     payload: {
-        post,
+        postId,
         comment,
+    },
+});
+
+export const toggleLike = (postId, activeUserId) => ({
+    type: TOGGLE_LIKE,
+    payload: {
+        postId,
+        activeUserId,
     },
 });

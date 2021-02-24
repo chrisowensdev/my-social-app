@@ -1,8 +1,8 @@
-import { v1 as uuidv1 } from 'uuid';
 import {
     ADD_COMMENT,
     ADD_POST,
     DELETE_POST,
+    TOGGLE_LIKE,
     UPDATE_POST,
 } from '../actionTypes';
 
@@ -57,10 +57,6 @@ const postReducer = (state = initialState, action) => {
         case DELETE_POST:
             return state;
         case ADD_COMMENT:
-            // const post = state.postList.filter(
-            //     (post) => action.payload.id === post.id
-            // )[0];
-
             const arrCopy = [...state.postList];
 
             let index = arrCopy.findIndex(
@@ -84,6 +80,19 @@ const postReducer = (state = initialState, action) => {
             return {
                 ...state,
                 postList: arrCopy,
+            };
+
+        case TOGGLE_LIKE:
+            const arrayCopy = [...state.postList];
+
+            let likeIndex = arrayCopy.findIndex(
+                (post) => post.id === action.payload.postId
+            );
+
+            console.log(likeIndex);
+
+            return {
+                ...state,
             };
         default:
             return state;

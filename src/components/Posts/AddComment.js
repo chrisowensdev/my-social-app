@@ -120,4 +120,10 @@ const AddCommentForm = styled.div`
             outline: none;
         }
     }
+    @media (prefers-color-scheme: dark) {
+        textarea {
+            background-color: rgb(26, 22, 22);
+            color: #fff;
+        }
+    }
 `;
