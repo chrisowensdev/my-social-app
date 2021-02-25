@@ -32,7 +32,7 @@ const Header = () => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    {activeUser ? (
+                    {activeUser.id ? (
                         <Logout />
                     ) : (
                         <Link className='navbar-link' to='/login'>

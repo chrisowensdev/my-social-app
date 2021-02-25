@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { loginUser } from '../../redux/actions/userActions';
@@ -10,6 +11,7 @@ const Login = () => {
 
     const users = useSelector((state) => state.users.userList);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -34,6 +36,7 @@ const Login = () => {
                 setEmail('');
                 setPassword('');
                 setErrorMessage('');
+                history.push('/');
             }
         }
     };
