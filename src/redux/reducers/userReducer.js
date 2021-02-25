@@ -1,6 +1,12 @@
 import { v1 as uuidv1 } from 'uuid';
 
-import { ADD_USER, DELETE_USER, UPDATE_USER, LOGIN_USER } from '../actionTypes';
+import {
+    ADD_USER,
+    DELETE_USER,
+    UPDATE_USER,
+    LOGIN_USER,
+    LOGOUT_USER,
+} from '../actionTypes';
 
 const initialState = {
     activeUser: {
@@ -66,6 +72,11 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeUser: action.payload,
+            };
+        case LOGOUT_USER:
+            return {
+                ...state,
+                activeUser: {},
             };
 
         default:

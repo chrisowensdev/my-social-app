@@ -1,4 +1,10 @@
-import { ADD_USER, DELETE_USER, LOGIN_USER, UPDATE_USER } from '../actionTypes';
+import {
+    ADD_USER,
+    DELETE_USER,
+    LOGIN_USER,
+    LOGOUT_USER,
+    UPDATE_USER,
+} from '../actionTypes';
 
 export const addUser = (user) => ({
     type: ADD_USER,
@@ -17,4 +23,8 @@ export const deleteUser = (id) => ({
 export const loginUser = (data) => ({
     type: LOGIN_USER,
     payload: data,
+});
+
+export const logoutUser = () => ({
+    type: LOGOUT_USER,
 });

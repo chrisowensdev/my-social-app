@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
+import Logout from '../User/Logout';
 
 const Header = () => {
+    const activeUser = useSelector((state) => state.users.activeUser);
     return (
         <Nav>
             <Title>
@@ -16,11 +20,7 @@ const Header = () => {
                         Profile
                     </Link>
                 </ListItem>
-                <ListItem>
-                    <Link className='navbar-link' to='/login'>
-                        Login
-                    </Link>
-                </ListItem>
+
                 <ListItem>
                     <Link className='navbar-link' to='/addpost'>
                         Add Post
@@ -30,6 +30,15 @@ const Header = () => {
                     <Link className='navbar-link' to='/signup'>
                         Sign Up
                     </Link>
+                </ListItem>
+                <ListItem>
+                    {activeUser ? (
+                        <Logout />
+                    ) : (
+                        <Link className='navbar-link' to='/login'>
+                            Login
+                        </Link>
+                    )}
                 </ListItem>
             </Menu>
         </Nav>
