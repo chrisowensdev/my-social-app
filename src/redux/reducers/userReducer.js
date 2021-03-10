@@ -15,7 +15,7 @@ const initialState = {
         lastName: 'Owens',
         email: 'chrisowensdev@gmail.com',
         password: '123',
-        imageUrl: 'https://chrisowensdev.com/images/profile_pic_400x533.jpg',
+        imageUrl: 'https://chrisowensdev.com/images/pic150x200.jpg',
     },
     userList: [
         {
@@ -25,7 +25,7 @@ const initialState = {
             email: 'chrisowensdev@gmail.com',
             password: '123',
             imageUrl:
-                'https://chrisowensdev.com/images/profile_pic_400x533.jpg',
+                'https://chrisowensdev.com/images/pic150x200.jpg',
         },
         {
             id: 2,

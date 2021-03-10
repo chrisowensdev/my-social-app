@@ -16,10 +16,10 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let loginInfo = {
-            email: email,
-            password: password,
-        };
+        // let loginInfo = {
+        //     email: email,
+        //     password: password,
+        // };
 
         if (!email) {
             setErrorMessage('Please enter email');

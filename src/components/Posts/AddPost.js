@@ -29,15 +29,19 @@ const AddPost = () => {
     };
     return (
         <>
-            <PostArea>
-                <form onSubmit={handleSubmit}>
-                    <textarea
-                        value={body}
-                        onChange={(e) => setBody(e.target.value)}
-                    ></textarea>
-                    <button>Submit</button>
-                </form>
-            </PostArea>
+            {activeUser.id ? (
+                <PostArea>
+                    <form onSubmit={handleSubmit}>
+                        <textarea
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
+                        ></textarea>
+                        <button>Submit</button>
+                    </form>
+                </PostArea>
+            ) : (
+                <SignInMessage>Please sign in to post</SignInMessage>
+            )}
         </>
     );
 };
@@ -92,4 +96,13 @@ const PostArea = styled.div`
             outline: none;
         }
     }
+`;
+
+const SignInMessage = styled.div`
+    height: 100px;
+    width: 430px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;

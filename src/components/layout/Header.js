@@ -1,12 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 
-import Logout from '../User/Logout';
+import AccountNavButton from '../User/AccountNavButton';
 
 const Header = () => {
-    const activeUser = useSelector((state) => state.users.activeUser);
     return (
         <Nav>
             <Title>
@@ -32,13 +30,7 @@ const Header = () => {
                     </Link>
                 </ListItem>
                 <ListItem>
-                    {activeUser.id ? (
-                        <Logout />
-                    ) : (
-                        <Link className='navbar-link' to='/login'>
-                            Login
-                        </Link>
-                    )}
+                    <AccountNavButton />
                 </ListItem>
             </Menu>
         </Nav>
@@ -72,8 +64,13 @@ const ListItem = styled.li`
     font-size: 18px;
     transition: all 0.3s ease;
     margin: 20px;
+    align-self: center;
 
     :hover {
         transform: scale(1.25);
+    }
+
+    :hover:last-child {
+        transform: none;
     }
 `;

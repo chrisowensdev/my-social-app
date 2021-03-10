@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logoutUser } from '../../redux/actions/userActions';
 
 const Logout = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const handleButton = () => {
+        dispatch(logoutUser());
+        history.push('/');
+    };
     return (
         <>
-            <button onClick={(e) => dispatch(logoutUser())}>Log Out</button>
+            <button onClick={handleButton}>Log Out</button>
         </>
     );
 };
