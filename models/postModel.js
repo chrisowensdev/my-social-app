@@ -1,21 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const commentSchema = mongoose.Schema(
-    {
-        userId: {
-            type: mongoose.Schema.Types.ObjectId,
-            required: true,
-            ref: 'User'
-        },
-        commentText: {
-            type: String,
-            required: true
-        }
-    }
-)
-
-const userSchema = mongoose.Schema({
+const postSchema = mongoose.Schema({
     authorId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -25,10 +11,31 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    comments: []
+    date: {
+        type: Number,
+        required: true,
+    },
+    comments: [
+        {
+            userId: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: 'User'
+            },
+            commentText: {
+                type: String,
+                required: true
+            },
+            date: {
+                type: Number,
+                required: true
+            }
+        }
+    ],
+    likes: [Number]
 
 })
 
-const User = mongoose.model('User', userSchema);
+const Post = mongoose.model('Post', postSchema);
 
-module.exports = User;
+module.exports = Post;
