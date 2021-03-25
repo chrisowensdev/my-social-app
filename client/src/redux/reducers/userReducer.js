@@ -2,6 +2,7 @@ import { v1 as uuidv1 } from 'uuid';
 
 import {
     ADD_USER,
+    AUTH_USER,
     DELETE_USER,
     UPDATE_USER,
     LOGIN_USER,
@@ -9,6 +10,7 @@ import {
 } from '../actionTypes';
 
 const initialState = {
+    authenticated: '',
     activeUser: {
         id: 1,
         firstName: 'Chris',
@@ -62,6 +64,11 @@ const userReducer = (state = initialState, action) => {
                 ],
             };
 
+        case AUTH_USER:
+            return {
+                ...state,
+                authenticated: action.data
+            }
         case UPDATE_USER:
             return state;
 
@@ -76,6 +83,7 @@ const userReducer = (state = initialState, action) => {
         case LOGOUT_USER:
             return {
                 ...state,
+                authenticated: '',
                 activeUser: {},
             };
 

@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../../redux/actions/userActions';
+import { useHistory } from 'react-router-dom';
+import { signup } from '../../redux/actions/userActions';
 import styled from 'styled-components';
 
-const AddUser = () => {
+const SignUp = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,6 +22,7 @@ const AddUser = () => {
             firstName: firstName,
             lastName: lastName,
             email: email,
+            password: password
         };
 
         if (!firstName) {
@@ -26,19 +31,25 @@ const AddUser = () => {
             setErrorMessage('Please enter last name');
         } else if (!email) {
             setErrorMessage('Please enter email');
+        } else if (!password) {
+            setErrorMessage('Please enter email');
         } else {
-            dispatch(addUser(user));
+            dispatch(signup(user, () => {
+                history.push('/');
+            }));
 
             setFirstName('');
             setLastName('');
             setEmail('');
+            setPassword('');
+            setConfirmPassword('');
             setErrorMessage('');
         }
     };
 
     return (
         <Form>
-            <h1>Add User</h1>
+            <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'
@@ -59,20 +70,38 @@ const AddUser = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
 
-                <button type='submit'>Add User</button>
+                <input
+                    type='password'
+                    placeholder='Enter Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <input
+                    type='password'
+                    placeholder='Confirm Password'
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+
+                {confirmPassword.length > 0 && confirmPassword !== password ? 'passwords do not match' : null}
+
+                <button type='submit'>Sign Up</button>
                 <Error>{errorMessage ? errorMessage : ''}</Error>
             </form>
         </Form>
     );
 };
 
-export default AddUser;
+export default SignUp;
 
 const Form = styled.div`
     display: flex;
     flex-direction: column;
-    width: 250px;
-    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    margin: 30px auto;
     border: 1px solid #379683;
     padding: 50px;
     border-radius: 10px;
@@ -83,12 +112,20 @@ const Form = styled.div`
         text-align: center;
     }
 
-    input {
-        margin: 10px 0;
-        padding: 5px;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+
+        input {
+        margin: 10px auto;
+        padding: 15px 10px;
         border: none;
+        border-radius: 5px;
         border-bottom: 1px solid #000;
-        font-size: 1.2rem;
+        font-size: 1rem;
+        width: 90%;
     }
 
     input:focus {
@@ -96,7 +133,7 @@ const Form = styled.div`
     }
 
     button {
-        margin-top: 10px;
+        margin: 10px auto;
         padding: 10px 10px;
         background-color: #379683;
         color: #fff;
@@ -104,10 +141,15 @@ const Form = styled.div`
         border: none;
         border-radius: 5px;
         font-size: 1.2rem;
+        width: 150px;
+        cursor: pointer;
     }
     button:focus {
         outline: none;
     }
+    }
+
+    
 `;
 
 const Error = styled.p`

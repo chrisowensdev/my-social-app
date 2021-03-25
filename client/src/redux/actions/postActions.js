@@ -1,3 +1,4 @@
+//import axios from 'axios';
 import {
     ADD_COMMENT,
     ADD_POST,
@@ -6,6 +7,16 @@ import {
     UPDATE_POST,
 } from '../actionTypes';
 
+// export const getPosts = (userId) => {
+//     return async dispatch => {
+//         try {
+//             let response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/`)
+//         } catch (error) {
+//             console.error(error);
+//         }
+//     }
+// }
+    
 export const addPost = (post) => ({
     type: ADD_POST,
     payload: post,
