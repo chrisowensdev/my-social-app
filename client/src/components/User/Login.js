@@ -9,36 +9,36 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const users = useSelector((state) => state.users.userList);
+    // const users = useSelector((state) => state.users.userList);
     const dispatch = useDispatch();
     const history = useHistory();
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
-        // let loginInfo = {
-        //     email: email,
-        //     password: password,
-        // };
+        // // let loginInfo = {
+        // //     email: email,
+        // //     password: password,
+        // // };
 
-        if (!email) {
-            setErrorMessage('Please enter email');
-        } else if (!password) {
-            setErrorMessage('Please enter password');
-        } else {
-            const user = users.filter(
-                (user) => user.email === email && user.password === password
-            )[0];
+        // if (!email) {
+        //     setErrorMessage('Please enter email');
+        // } else if (!password) {
+        //     setErrorMessage('Please enter password');
+        // } else {
+        //     const user = users.filter(
+        //         (user) => user.email === email && user.password === password
+        //     )[0];
 
-            if (user) {
-                dispatch(loginUser(user));
+        //     if (user) {
+        //         dispatch(loginUser(user, () => history.push('/')));
 
-                setEmail('');
-                setPassword('');
-                setErrorMessage('');
-                history.push('/');
-            }
-        }
+        //         setEmail('');
+        //         setPassword('');
+        //         setErrorMessage('');
+        //         history.push('/');
+        //     }
+        // }
     };
     return (
         <Form>

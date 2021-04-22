@@ -4,19 +4,25 @@ import { Link } from 'react-router-dom';
 import Logout from './Logout';
 
 import styled from 'styled-components';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const AccountNavButton = () => {
     const [active, setActive] = useState(false);
     console.log('Active', active);
-    const activeUser = useSelector((state) => state.users.activeUser);
+    const activeUser = useSelector((state) => state.user.activeUser);
     return (
         <>
-            {activeUser.id ? (
+            {activeUser._id ? (
                 <AccountButton onClick={(e) => setActive(!active)}>
-                    <NavProfilePic
+                    {activeUser.imageUrl ? (
+                        <NavProfilePic
                         src={activeUser.imageUrl}
                         alt={activeUser.firstName}
                     />
+                    ) : (
+                        <AccountCircleIcon fontSize='large'/>
+                    )}
+                    
                     <AccountMenu active={active ? 'active' : ''}>
                         <Logout />
                     </AccountMenu>
@@ -42,6 +48,8 @@ const NavProfilePic = styled.img`
 
 const AccountButton = styled.div`
     position: relative;
+    display: flex;
+
 `;
 const AccountMenu = styled.div`
     position: absolute;

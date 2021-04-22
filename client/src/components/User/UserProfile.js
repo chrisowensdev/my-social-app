@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const UserProfile = () => {
     const [edit, setEdit] = useState(false);
-    const user = useSelector((state) => state.users.activeUser);
+    const user = useSelector((state) => state.user.activeUser);
 
     return (
         <>
