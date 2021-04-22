@@ -19,7 +19,8 @@ export const signup = (user, cb) => {
         try {
             let response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/users/signup`, user);
 
-            dispatch({type: AUTH_USER, data: response.data.token})
+            console.log(response.data);
+            dispatch({type: AUTH_USER, data: response.data})
             cb();
 
         } catch (error) {

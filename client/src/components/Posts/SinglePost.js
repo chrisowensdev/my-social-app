@@ -10,13 +10,13 @@ import AddComment from './AddComment';
 import ViewComments from './ViewComments';
 
 const SinglePost = ({ post }) => {
-    const users = useSelector((state) => state.users.userList);
+    const users = useSelector((state) => state.user.userList);
 
     const author = users.filter((user) => user.id === post.authorId)[0];
 
     return (
         <ListItem>
-            <div className='author-info'>
+            {/* <div className='author-info'>
                 <img src={author.imageUrl} alt={author.firstName} />
                 <h4>
                     <Link to={`/users/${author.id}`} className='user-link'>
@@ -33,7 +33,7 @@ const SinglePost = ({ post }) => {
             <PostButtons>
                 <StarPost post={post} />
                 <AddComment post={post} />
-            </PostButtons>
+            </PostButtons> */}
         </ListItem>
     );
 };

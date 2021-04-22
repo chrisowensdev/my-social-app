@@ -11,14 +11,7 @@ import {
 
 const initialState = {
     authenticated: '',
-    activeUser: {
-        id: 1,
-        firstName: 'Chris',
-        lastName: 'Owens',
-        email: 'chrisowensdev@gmail.com',
-        password: '123',
-        imageUrl: 'https://chrisowensdev.com/images/pic150x200.jpg',
-    },
+    activeUser: {},
     userList: [
         {
             id: 1,
@@ -50,24 +43,11 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_USER:
-            return {
-                ...state,
-                userList: [
-                    ...state.userList,
-                    {
-                        id: uuidv1(),
-                        firstName: action.payload.firstName,
-                        lastName: action.payload.lastName,
-                        email: action.payload.email,
-                    },
-                ],
-            };
-
         case AUTH_USER:
             return {
                 ...state,
-                authenticated: action.data
+                authenticated: action.data.token,
+                activeUser: action.data.user
             }
         case UPDATE_USER:
             return state;

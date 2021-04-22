@@ -2,9 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+import { useSelector } from 'react-redux';
+
 import AccountNavButton from '../User/AccountNavButton';
 
 const Header = () => {
+    const activeUser = useSelector(state => state.user.activeUser)
+
     return (
         <Nav>
             <Title>
@@ -24,11 +28,14 @@ const Header = () => {
                         Add Post
                     </Link>
                 </ListItem>
-                <ListItem>
-                    <Link className='navbar-link' to='/signup'>
-                        Sign Up
-                    </Link>
-                </ListItem>
+                {!activeUser && (
+                    <ListItem>
+                        <Link className='navbar-link' to='/signup'>
+                            Sign Up
+                        </Link>
+                    </ListItem>
+                )}
+                
                 <ListItem>
                     <AccountNavButton />
                 </ListItem>

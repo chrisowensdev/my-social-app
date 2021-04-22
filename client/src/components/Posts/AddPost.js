@@ -7,7 +7,7 @@ import { addPost } from '../../redux/actions/postActions';
 const AddPost = () => {
     const [body, setBody] = useState('');
 
-    const activeUser = useSelector((state) => state.users.activeUser);
+    const activeUser = useSelector((state) => state.user.activeUser);
     const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
@@ -29,7 +29,7 @@ const AddPost = () => {
     };
     return (
         <>
-            {activeUser.id ? (
+            {activeUser._id ? (
                 <PostArea>
                     <form onSubmit={handleSubmit}>
                         <textarea

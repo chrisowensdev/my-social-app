@@ -20,12 +20,14 @@ router.post('/signup', async (req, res) => {
         const userExists = await User.findOne({email});
 
         if(!userExists) {
-            const user = await User.create({
+            const createdUser = await User.create({
                 firstName,
                 lastName,
                 email,
                 password: hashPassword
             });
+
+            const user = await User.findById(createdUser._id).select('-password');
 
             let jwtToken = token(user);
 
@@ -42,5 +44,6 @@ router.post('/signup', async (req, res) => {
     }
     
 });
+
 
 module.exports = router;
